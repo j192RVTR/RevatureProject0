@@ -13,12 +13,14 @@ public class EmployeeMenuContext extends ConsoleContext{
         System.out.println("Press 1 to approve or reject an account.");
         System.out.println("Press 2 to view customer account balances.");
         System.out.println("Press 3 to view a log of all transactions.");
+        System.out.println("Press 4 to logout.");
 
         return ConsoleContext.parseNextContextFromScanner(Arrays.asList(
                 this,
                 new ApplicationDecisionContext(),
                 new CustomerSelectionContext(),
-                new TransactionListContext()
+                new TransactionListContext(),
+                new StartContext()
         ));
     }
 
@@ -34,6 +36,7 @@ public class EmployeeMenuContext extends ConsoleContext{
             return false;
         }
         this.employee = employee;
+        EmployeeMenuContextFactory.setEmployeeMenuContext(this);
         System.out.println("Welcome " + employee.getName() + "!");
         return true;
     }

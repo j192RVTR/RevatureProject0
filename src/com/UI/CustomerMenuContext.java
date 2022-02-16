@@ -27,6 +27,7 @@ public class CustomerMenuContext extends ConsoleContext{
         System.out.println("Press 3 to make a deposit or withdrawal.");
         System.out.println("Press 4 to post a money transfer to another account.");
         System.out.println("Press 5 to accept a money transfer from another account.");
+        System.out.println("Press 6 to logout.");
 
         return ConsoleContext.parseNextContextFromScanner(Arrays.asList(
                 this,
@@ -34,7 +35,8 @@ public class CustomerMenuContext extends ConsoleContext{
                 new AccountInfoContext(),
                 new TransactionContext(),
                 new PostTransferContext(),
-                new AcceptTransferContext()
+                new AcceptTransferContext(),
+                new StartContext()
 
         ));
     }

@@ -17,9 +17,11 @@ public class ApplicationDecisionContext extends ConsoleContext{
             return returnToEmployee();
         }
         pendingAccounts.forEach(System.out::println);
-        System.out.println("Enter an account number.");
+        System.out.println("Enter an account number or -1 to cancel.");
         try {
             int chosenID = Integer.parseInt(scanner.nextLine());
+            if (chosenID == -1)
+                return returnToEmployee();
             Account account = pendingAccounts.stream().filter(a -> a.getId() == chosenID).findFirst().get();
             System.out.println("Chose Account: " + account);
             System.out.println("Press 1 to accept.");
@@ -39,7 +41,7 @@ public class ApplicationDecisionContext extends ConsoleContext{
             }
         }
         catch(Exception e){
-            System.out.println("Error in input!");
+            e.printStackTrace();
             return this;
         }
 

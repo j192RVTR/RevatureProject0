@@ -79,7 +79,8 @@ public class TransferDaoImpl implements TransferDao{
                 int from_id = rs.getInt(5);
                 double amount = rs.getDouble(2);
                 Timestamp trans_date = rs.getTimestamp(3);
-                Transfer transfer = new Transfer(id, from_id, customer.getId(), Transfer.Status.OPEN, amount, trans_date);
+                int to_id = rs.getInt(6);
+                Transfer transfer = new Transfer(id, from_id, to_id, Transfer.Status.OPEN, amount, trans_date);
                 transfers.add(transfer);
             }
             return transfers;
