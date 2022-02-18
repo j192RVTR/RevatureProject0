@@ -43,6 +43,8 @@ public class AccountInfoContext extends ConsoleContext{
             //Show balance of account?
             Account account = accountList.stream().filter(a -> a.getId() == id).findFirst().get();
             System.out.println("Account Balance: " + account.getAmount());
+            System.out.println("Press anything to continue.");
+            String hold = scanner.nextLine();
         }
         catch (NumberFormatException | NoSuchElementException e){
             System.out.println("Invalid input.");

@@ -42,6 +42,8 @@ public class CustomerDaoImpl implements CustomerDao{
             int count = statement.executeUpdate();
             if(count <= 0)
                 throw new SQLException();
+            System.out.println("Update customer table success!");
+
         }
         catch (SQLException sqlException){
             System.out.println("Update customer table failed!");
@@ -57,6 +59,8 @@ public class CustomerDaoImpl implements CustomerDao{
             int count = statement.executeUpdate();
             if(count <= 0)
                 throw new SQLException();
+            System.out.println("Delete from customer table success!");
+
         } catch (SQLException e) {
             System.out.println("Delete from customer table failed!");
         }

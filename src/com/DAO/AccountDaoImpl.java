@@ -23,6 +23,7 @@ public class AccountDaoImpl implements AccountDao{
             if (count <= 0){
                 throw new SQLException();
             }
+            System.out.println("Submitted account application.");
         } catch (SQLException e) {
             System.out.println("Failed to submit account application.");
         }
@@ -40,8 +41,9 @@ public class AccountDaoImpl implements AccountDao{
             int count = statement.executeUpdate();
             if(count <= 0)
                 throw new SQLException();
+            System.out.println("Successfully updated account.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Failed to update account.");
         }
 
     }
@@ -64,9 +66,10 @@ public class AccountDaoImpl implements AccountDao{
                 Account account = new Account(id, cust_id, amount, approval_id, status, dat);
                 accounts.add(account);
             }
+            System.out.println("Returning list of accounts...");
             return accounts;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Failed to build list of accounts.");
         }
         return new ArrayList<>();
     }
@@ -89,9 +92,11 @@ public class AccountDaoImpl implements AccountDao{
                 Account account = new Account(id, cust_id, amount, approval_id, status, dat);
                 accounts.add(account);
             }
+            System.out.println("Returning list of approved accounts...");
+
             return accounts;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Failed to build list of approved accounts.");
         }
         return new ArrayList<>();
     }
@@ -111,9 +116,10 @@ public class AccountDaoImpl implements AccountDao{
                 Account account = new Account(id, cust_id, amount, approval_id, Account.Status.PENDING, dat);
                 accounts.add(account);
             }
+            System.out.println("Returning list of pending accounts...");
             return accounts;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Failed to build list of pending accounts.");
         }
         return new ArrayList<>();
     }

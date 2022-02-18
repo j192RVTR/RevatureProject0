@@ -9,7 +9,7 @@ public class EmployeeMenuContext extends ConsoleContext{
 
     @Override
     public ConsoleContext eval() {
-        System.out.println("You are in the Employee main menu.");
+        System.out.println("\nYou are in the Employee main menu.");
         System.out.println("Press 1 to approve or reject an account.");
         System.out.println("Press 2 to view customer account balances.");
         System.out.println("Press 3 to view a log of all transactions.");

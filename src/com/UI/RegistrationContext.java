@@ -19,6 +19,7 @@ public class RegistrationContext extends ConsoleContext{
             System.out.println("Username is already taken!");
             return new StartContext();
         }
+        System.out.println("Registered User!\n");
         return new CustomerMenuContext(customer);
     }
 }

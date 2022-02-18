@@ -21,7 +21,7 @@ public class CustomerMenuContext extends ConsoleContext{
 
     @Override
     public ConsoleContext eval() {
-        System.out.println("You are in the customer main menu.");
+        System.out.println("\nYou are in the customer main menu.");
         System.out.println("Press 1 to apply for a new account.");
         System.out.println("Press 2 to view account balances.");
         System.out.println("Press 3 to make a deposit or withdrawal.");
