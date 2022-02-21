@@ -22,7 +22,7 @@ public class CustomerSelectionContext extends ConsoleContext{
         try {
             int id = Integer.parseInt(scanner.nextLine());
             if(id == -1){
-                returnToEmployee();
+                return returnToEmployee();
             }
             Customer customer = customers.stream().filter(c -> c.getId() == id).findFirst().get();
             return new AccountInfoContext(customer, EmployeeMenuContextFactory.getEmployeeMenuContext());
