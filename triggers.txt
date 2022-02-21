@@ -1,0 +1,53 @@
+DELIMITER $$
+CREATE trigger before_deposit
+before insert
+on deposit for each row
+begin
+if new.amount >= 0 then
+update account set account.amount = account.amount + new.amount where account.id = new.account_id;
+set new.status = 'SUCCESS';
+end if;
+if new.amount < 0 then
+set new.status = 'FAIL';
+end if;
+end$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE trigger before_withdraw
+before insert
+on withdraw for each row
+begin
+DECLARE $var1 decimal(20, 2) default 0;
+select amount from account where account.id = new.account_id into $var1;
+if new.amount >= 0 and new.amount <= $var1 then
+update account set account.amount = account.amount - new.amount where account.id = new.account_id;
+set new.status = 'SUCCESS';
+end if;
+if new.amount < 0 or new.amount > $var1 then
+set new.status = 'FAIL';
+end if;
+end$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE trigger on_transfer_update
+before update
+on transfer for each row
+begin
+DECLARE $var1 decimal(20, 2) default 0;
+select amount from account where account.id = new.from_id into $var1;
+if new.status = 'ACCEPTED' then
+	if new.amount < 0 or new.amount > $var1 then
+	set new.status = 'FAIL';
+	end if;
+	if new.amount >= 0 and new.amount <= $var1 then
+	set new.status = 'SUCCESS';
+	update account a, account b
+	set a.amount = a.amount + new.amount,
+	    b.amount = b.amount - new.amount
+	where a.id = new.to_id and b.id = new.from_id;
+	end if;
+end if;
+end$$
+DELIMITER ;
